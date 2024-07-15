@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<style>
+    body{
+        background: linear-gradient(45deg,lightgray,skyblue);
+    }
+</style>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">Magical Medicine Manager</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}#m_c">Catalog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}#c_s">Contact</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="bg-dark text-white mt-1">Logout</button>
+                    </form>
+                </li>
+                {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+                {% endif %}
+
+                
+            </ul>
+            <form class="form-inline my-2 my-lg-0 ml-auto" method="GET" action="{% url 'search' %}">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search Medicine" aria-label="Search"
+                    name="q">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+
+<div class="container mt-5">
+    <h1 class="mt-5">Search Results</h1>
+    <div class="row">
+        {% for medicine in medicines %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="https://images.pexels.com/photos/208512/pexels-photo-208512.jpeg?cs=srgb&dl=pexels-pixabay-208512.jpg&fm=jpg" class="card-img-top" alt="{{ medicine.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ medicine.name }}</h5>
+                    <p class="card-text">{{ medicine.description }}</p>
+                    <p class="card-text">${{ medicine.price }}</p>
+                    <a href="{% url 'medicine_detail' medicine.pk %}" class="btn btn-primary">Buy Now</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>

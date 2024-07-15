@@ -1,0 +1,95 @@
+<!-- templates/medicine_detail.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ medicine.name }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            /* background-color: #f8f9fa; */
+            background: linear-gradient(45deg,lightgray,skyblue);
+
+            margin: 0;
+        }
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .form-control {
+            border-radius: 0.25rem;
+        }
+        .btn-primary {
+            background-color: #ff9900;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #cc7a00;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="{% url 'home' %}">Magical Medicine Store</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'home' %}#m_c">Medicine Catalog</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'home' %}#c_s">Contact</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0 ml-auto" method="GET" action="{% url 'search' %}">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+
+<div class="container mt-5 pt-5">
+    <div class="card">
+        <div class="card-header">
+            <h1>{{ medicine.name }}</h1>
+        </div>
+        <div class="card-body">
+            <p>{{ medicine.description }}</p>
+            <p><strong>Price:</strong> ${{ medicine.price }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="form-container mt-5">
+    <h2 class="text-center">Enter your details</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <label for="prescribed_by">Prescribed by:</label>
+        <input type="text" id="prescribed_by" name="prescribed_by" required>
+        <button type="submit">Order</button>
+    </form>
+    
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

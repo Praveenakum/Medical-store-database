@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Bootstrap CSS link -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS for additional styling */
+        body {
+            background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+            /* background-image: url('https://medlineplus.gov/images/Medicines_share.jpg'); */
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            
+            display: flex;
+            flex-direction: column; /* Align items in a column */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+        }
+        .heading {
+            background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+            padding:15px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgb(31, 8, 8); /* Box shadow */
+            text-align: center;
+            color:black;
+            margin-top: 40px;
+            margin-bottom: 10px;
+        }
+        .login-form {
+            max-width: 400px;
+            background-color: #ffffff; /* White background */
+            background-image: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWYwZXFsZXgxdTdxZWdjdzg1bWpvd2IyZzF5dTE3M3E5MmFjeTh4bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ITRemFlr5tS39AzQUL/giphy.webp');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0px 4px 15px rgb(49, 10, 10); /* Box shadow */
+            margin: auto; /* Center the form */
+            text-align: center;
+        }
+        .login-form img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .login-form h2 {
+            color: #007bff; /* Primary color */
+            margin-bottom: 30px;
+        }
+        .login-form button {
+            background-color: #007bff; /* Primary color */
+            border: none;
+        }
+        .login-form button:hover {
+            background-color: #0056b3; /* Darker shade for hover */
+        }
+        .login-form p {
+            text-align: center;
+        }
+        .login-form a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .login-form a:hover {
+            text-decoration: underline;
+        }
+        .profile {
+            box-shadow: 2px 10px 25px #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="heading">
+        <h2>Magic Medicine Manager</h2>
+    </div>
+    <div class="login-form">
+        <img class="mb-5 profile" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxJdxLk4Hg-r-7iq2c85fXxafBwnBkLfMZzW-vfSuYB0pmZqueObRDjrhbayS4yYYCdNg&usqp=CAU" alt="Profile Image"> <!-- Profile-like image -->
+        <!-- <h2 class="text-primary">Login</h2> -->
+        <form method="post">
+            <div class="text-white">
+                {% csrf_token %}
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn btn-primary btn-block mt-4">Login</button>
+        </form>
+        <p class="mt-4 text-white">Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
+    </div>
+
+    <!-- Bootstrap JS scripts (optional, for some features like dropdowns) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

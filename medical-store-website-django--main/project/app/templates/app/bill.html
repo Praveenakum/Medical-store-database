@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bill</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://www.transparenttextures.com/patterns/diamond-upholstery.png');
+            background-attachment: fixed;
+        }
+        .bill-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            border: 1px solid #dee2e6;
+            position: relative;
+            overflow: hidden;
+        }
+        .bill-header {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #17a2b8;
+        }
+        .bill-header h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        .bill-header p {
+            font-size: 14px;
+            margin-top: -10px;
+            color: #6c757d;
+        }
+        .bill-info {
+            position: relative;
+            z-index: 1;
+        }
+        .bill-info p {
+            font-size: 16px;
+            color: #495057;
+            margin: 10px 0;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background: rgba(23, 162, 184, 0.1);
+        }
+        .bill-info strong {
+            color: #17a2b8;
+        }
+        .bill-footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #28a745;
+            position: relative;
+            z-index: 1;
+        }
+        .bill-footer p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        .pattern {
+            background: url('https://www.transparenttextures.com/patterns/connected.png');
+            opacity: 0.1;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: -1;
+        }
+        .overlay {
+            background: linear-gradient(135deg, #17a2b8, #007bff);
+            opacity: 0.05;
+            position: absolute;
+            top: -50%;
+            bottom: -50%;
+            left: -50%;
+            right: -50%;
+            transform: rotate(45deg);
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="pattern"></div>
+<div class="bill-container">
+    <div class="overlay"></div>
+    <div class="bill-header">
+        <h1>Bill</h1>
+        <p>Thank you for your purchase!</p>
+    </div>
+    <div class="bill-info">
+        <p><strong>Name:</strong> {{ user.name }}</p>
+        <p><strong>Age:</strong> {{ user.age }}</p>
+        <p><strong>Address:</strong> {{ user.address }}</p>
+        <p><strong>Phone:</strong> {{ user.phone_number }}</p>
+        <p><strong>Medicine:</strong> {{ user.medicine }}</p>
+        <p><strong>Quantity:</strong> {{ user.quantity }}</p>
+        <p><strong>Total Price:</strong> ${{ user.total_price }}</p>
+        <p><strong>Date:</strong> {{ user.ordered_at }}</p>
+    </div>
+    <div class="bill-footer">
+        <p>We hope to see you again soon!</p>
+    </div>
+</div>
+</body>
+</html>
